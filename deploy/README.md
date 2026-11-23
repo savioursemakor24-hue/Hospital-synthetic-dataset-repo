@@ -1,10 +1,45 @@
-# CardioSense AI: Hospital Synthetic Dataset Classification System
+# CardioPulse AI: Clinical Heart Disease Diagnostic Suite & Classification System
 
-An end-to-end Machine Learning classification pipeline, clinical risk-stratification dashboard, and Vercel-ready serverless REST API trained on the Hospital Synthetic Dataset.
+An end-to-end Machine Learning classification pipeline, modern dark-themed clinical risk-stratification dashboard, and Vercel-ready serverless REST API trained on the Hospital Synthetic Dataset.
 
 ---
 
-## 1. Project Overview & Architecture
+## 1. Redesigned Interface & Feature Highlights
+
+The user interface has been redesigned into **CardioPulse.AI Pro**, a clinical diagnostic suite:
+- **Real-Time Biomarker Intake & Categorization**:
+  - **Demographics**: Interactive age slider ($30 - 80$ years) with segmented biological sex controls.
+  - **Biometrics & Hemodynamic Vitals**:
+    - Systolic BP input with real-time AHA classification badges (*Normal*, *Elevated*, *Stage 1 HTN*, *Stage 2 HTN*).
+    - Total Cholesterol input with dynamic clinical threshold tags (*Desirable*, *Borderline*, *High Risk*).
+    - BMI calculator with real-time category tags (*Underweight*, *Normal*, *Overweight*, *Obese Class I/II*).
+  - **Comorbidities & Family Heredity**:
+    - Diagnosed Diabetes interactive toggle card.
+    - Family Cardiovascular History interactive toggle card.
+  - **Behavioral & Lifestyle**:
+    - Tobacco Smoker segmented toggle.
+    - Physical Activity weekly day chips ($0$ to $4+$ days/week) with cardioprotective indicators.
+    - Perceived Stress visual gradient slider ($1 - 10$).
+- **Instant Diagnostic Verdict & Radial Gauge**:
+  - Animated SVG radial risk gauge with glowing neon progression and heartbeat indicator.
+  - Automated risk classification verdict (*Low*, *Moderate Borderline*, *Elevated High Risk*).
+  - Primary biomarker impact breakdown highlighting adverse vs cardioprotective drivers.
+  - Actionable clinical recommendations tailored to each patient profile.
+  - One-click PDF / Diagnostic summary print export.
+  - Quick patient profile presets (*High Risk Cardiac*, *Pre-Hypertensive Moderate*, *Athletic Low Risk*, *Random Synthetic*).
+- **Cohort Batch Screener**:
+  - Drag-and-drop CSV upload for hospital cohorts.
+  - One-click **Load Pre-Built 20-Patient Cohort** for instantaneous testing.
+  - Summary KPI metrics (Total Evaluated, Positive Count & Percentage, Mean Risk Score).
+  - Real-time search filter and Risk Tier selector (*All*, *High*, *Moderate*, *Low*).
+  - One-click **Export Scored Cohort CSV**.
+- **Model Analytics & Explainability**:
+  - Complete 5-Fold Stratified Cross-Validation benchmark table.
+  - Interactive confusion matrix heatmap visualizer.
+  - Gini feature importance bar chart based on the champion Gradient Boosting tree model.
+- **REST API Playground**:
+  - Interactive code integration snippets in **cURL**, **Python**, and **JavaScript**.
+  - One-click copy and live sandbox runner executing against `/api/predict`.
 
 - **Dataset**: Hospital Synthetic Heart Disease Dataset ($N = 500$ patients, balanced binary target: $53.2\%$ positive, $46.8\%$ negative).
 - **All 10 Features Utilized**:
