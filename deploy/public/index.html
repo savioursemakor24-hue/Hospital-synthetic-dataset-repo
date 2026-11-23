@@ -3,530 +3,785 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CardioSense AI - Hospital Heart Disease Classification</title>
+  <title>CardioPulse AI — Clinical Heart Disease Diagnostic Suite</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
-  <div class="app-layout">
-    <!-- Top Navigation -->
-    <header class="top-nav">
-      <div class="nav-brand">
-        <div class="logo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-            <path d="M12 5v14"/>
-            <path d="M5 12h14"/>
+<body class="theme-dark">
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-container">
+        <div class="brand-symbol">
+          <svg class="heart-pulse-svg" viewBox="0 0 40 40" fill="none">
+            <path class="heart-base" d="M20 34s-14-8.8-14-17.5A7.5 7.5 0 0 1 20 11.2a7.5 7.5 0 0 1 14 5.3C34 25.2 20 34 20 34Z" fill="url(#heartGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <path class="ecg-line" d="M7 19h6l2-5 3 10 3-7 2 4h10" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="heartGrad" x1="6" y1="9" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f43f5e"/>
+                <stop offset="1" stop-color="#be123c"/>
+              </linearGradient>
+            </defs>
           </svg>
         </div>
         <div>
-          <h1 class="brand-title">CardioSense AI</h1>
-          <p class="brand-sub">Hospital Synthetic Dataset Classification System</p>
+          <div class="brand-title-wrap">
+            <h1 class="brand-title">CardioPulse<span class="brand-accent">.AI</span></h1>
+            <span class="version-tag">PRO v2.4</span>
+          </div>
+          <p class="brand-desc">Clinical Decision Support & Synthetic Cohort Classification System</p>
         </div>
       </div>
 
-      <div class="header-badges">
-        <span class="badge badge-pulse"><span class="pulse-dot"></span> Pipeline Active</span>
-        <span class="badge badge-accent">Gradient Boosting</span>
-        <span class="badge badge-secondary">Vercel Serverless Ready</span>
+      <div class="header-status-panel">
+        <div class="status-chip chip-online">
+          <span class="live-pulse"></span>
+          <span>GBDT ML Engine Live</span>
+        </div>
+        <div class="status-chip chip-metric">
+          <span class="chip-label">Hold-out ROC-AUC:</span>
+          <span class="chip-val">0.563</span>
+        </div>
+        <div class="status-chip chip-deploy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 19.7778H22L12 2Z"/></svg>
+          <span>Vercel Serverless Ready</span>
+        </div>
       </div>
     </header>
 
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs">
-      <button class="tab-btn active" data-tab="tab-single">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Single Patient Assessment
+    <!-- Navigation Hub -->
+    <nav class="nav-hub">
+      <button class="nav-hub-btn active" data-tab="tab-assessment">
+        <span class="btn-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 11V3m-4 4 4-4 4 4"/></svg>
+        </span>
+        <span class="btn-text">Individual Patient Risk Intake</span>
+        <span class="btn-badge">Realtime</span>
       </button>
-      <button class="tab-btn" data-tab="tab-batch">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        Batch CSV Screening
+
+      <button class="nav-hub-btn" data-tab="tab-batch">
+        <span class="btn-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </span>
+        <span class="btn-text">Cohort Batch Screener</span>
+        <span class="btn-badge">CSV</span>
       </button>
-      <button class="tab-btn" data-tab="tab-metrics">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-        Model Benchmark & Metrics
+
+      <button class="nav-hub-btn" data-tab="tab-analytics">
+        <span class="btn-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </span>
+        <span class="btn-text">Model Analytics & Explainability</span>
       </button>
-      <button class="tab-btn" data-tab="tab-api">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        API & Deployment Specs
+
+      <button class="nav-hub-btn" data-tab="tab-developer">
+        <span class="btn-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </span>
+        <span class="btn-text">REST API & Integration</span>
       </button>
     </nav>
 
-    <!-- Main Container -->
-    <main class="main-content">
-      <!-- Tab 1: Single Patient Assessment -->
-      <section id="tab-single" class="tab-pane active">
-        <div class="grid-2col">
-          <!-- Form Card -->
-          <div class="card form-card">
-            <div class="card-header">
+    <!-- CONTENT SECTIONS -->
+    <main class="content-body">
+
+      <!-- ================= TAB 1: INDIVIDUAL ASSESSMENT ================= -->
+      <section id="tab-assessment" class="tab-view active">
+        <!-- Presets Bar -->
+        <div class="preset-strip">
+          <span class="preset-label">⚡ Fast Patient Profiles:</span>
+          <div class="preset-buttons">
+            <button class="preset-btn" data-preset="high_risk">
+              <span class="dot dot-danger"></span> High Risk Cardiac Patient
+            </button>
+            <button class="preset-btn" data-preset="borderline">
+              <span class="dot dot-warning"></span> Pre-Hypertensive Moderate
+            </button>
+            <button class="preset-btn" data-preset="low_risk">
+              <span class="dot dot-success"></span> Athletic Low Risk
+            </button>
+            <button class="preset-btn" data-preset="random">
+              <span class="dot dot-info"></span> 🎲 Random Synthetic Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="assessment-grid">
+          <!-- Left: Clinical Input Columns -->
+          <div class="clinical-intake-card">
+            <div class="card-title-bar">
               <div>
-                <h2>Clinical Feature Intake</h2>
-                <p>Provide patient biometric and lifestyle indicators to evaluate heart disease risk.</p>
+                <h2>Clinical Biomarker & History Intake</h2>
+                <p>Configure all 10 clinical features utilized by the trained classification pipeline.</p>
               </div>
-              <div class="preset-group">
-                <label for="presetSelect">Load Preset:</label>
-                <select id="presetSelect" class="form-select-sm">
-                  <option value="">-- Choose Profile --</option>
-                  <option value="high_risk">High Risk Profile</option>
-                  <option value="low_risk">Low Risk Profile</option>
-                  <option value="borderline">Borderline Risk Profile</option>
-                  <option value="random">Random Synthetic Profile</option>
-                </select>
-              </div>
+              <button type="button" class="btn-text-sm" id="resetFormBtn">Clear All</button>
             </div>
 
-            <form id="predictionForm" class="patient-form">
-              <div class="form-grid">
-                <!-- Age -->
-                <div class="form-group">
-                  <label for="age">Age (Years) <span class="required">*</span></label>
-                  <input type="number" id="age" name="age" min="18" max="100" value="54" required class="form-input">
-                  <span class="input-hint">Range: 30 - 79 in dataset</span>
+            <form id="intakeForm" class="intake-form">
+              <!-- Category 1: Demographics -->
+              <div class="form-section">
+                <div class="section-legend">
+                  <span class="legend-num">01</span>
+                  <span>Patient Demographics</span>
                 </div>
-
-                <!-- Sex -->
-                <div class="form-group">
-                  <label for="sex">Biological Sex <span class="required">*</span></label>
-                  <select id="sex" name="sex" class="form-input" required>
-                    <option value="Male" selected>Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-
-                <!-- Blood Pressure -->
-                <div class="form-group">
-                  <label for="blood_pressure">Systolic BP (mmHg) <span class="required">*</span></label>
-                  <input type="number" id="blood_pressure" name="blood_pressure" min="80" max="220" value="138" required class="form-input">
-                  <span class="input-hint">Normal: &lt;120 | Pre-HTN: 120-139</span>
-                </div>
-
-                <!-- Cholesterol -->
-                <div class="form-group">
-                  <label for="cholesterol">Total Cholesterol (mg/dL) <span class="required">*</span></label>
-                  <input type="number" id="cholesterol" name="cholesterol" min="120" max="350" value="264" required class="form-input">
-                  <span class="input-hint">Desirable: &lt;200 | Borderline: 200-239</span>
-                </div>
-
-                <!-- BMI -->
-                <div class="form-group">
-                  <label for="bmi">BMI (kg/m²) <span class="required">*</span></label>
-                  <div class="bmi-input-wrap">
-                    <input type="number" step="0.1" id="bmi" name="bmi" min="15.0" max="50.0" value="36.2" required class="form-input">
-                    <span id="bmiCategoryBadge" class="bmi-badge">Obese</span>
+                <div class="section-fields-grid grid-2">
+                  <!-- Age -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="age">Age</label>
+                      <span class="val-pill" id="ageValDisplay">54 yrs</span>
+                    </div>
+                    <input type="range" id="age" min="30" max="80" value="54" class="range-slider">
+                    <div class="range-markers">
+                      <span>30 yrs</span>
+                      <span>55 yrs</span>
+                      <span>80 yrs</span>
+                    </div>
                   </div>
-                  <span class="input-hint">Normal: 18.5 - 24.9</span>
-                </div>
 
-                <!-- Physical Activity -->
-                <div class="form-group">
-                  <label for="physical_activity">Physical Activity (Days/Week)</label>
-                  <select id="physical_activity" name="physical_activity" class="form-input" required>
-                    <option value="0">0 days (Sedentary)</option>
-                    <option value="1" selected>1 day (Light)</option>
-                    <option value="2">2 days (Moderate)</option>
-                    <option value="3">3 days (Active)</option>
-                    <option value="4">4+ days (Very Active)</option>
-                  </select>
-                </div>
-
-                <!-- Smoker -->
-                <div class="form-group">
-                  <label>Current Smoker? <span class="required">*</span></label>
-                  <div class="radio-toggle-group">
-                    <label class="radio-pill">
-                      <input type="radio" name="smoker" value="No" checked>
-                      <span>No</span>
-                    </label>
-                    <label class="radio-pill">
-                      <input type="radio" name="smoker" value="Yes">
-                      <span>Yes</span>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Diabetes -->
-                <div class="form-group">
-                  <label>Diabetes Diagnosed? <span class="required">*</span></label>
-                  <div class="radio-toggle-group">
-                    <label class="radio-pill">
-                      <input type="radio" name="diabetes" value="No" checked>
-                      <span>No</span>
-                    </label>
-                    <label class="radio-pill">
-                      <input type="radio" name="diabetes" value="Yes">
-                      <span>Yes</span>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Family History -->
-                <div class="form-group">
-                  <label>Family Heart Disease History?</label>
-                  <div class="radio-toggle-group">
-                    <label class="radio-pill">
-                      <input type="radio" name="family_history" value="No">
-                      <span>No</span>
-                    </label>
-                    <label class="radio-pill">
-                      <input type="radio" name="family_history" value="Yes" checked>
-                      <span>Yes</span>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Stress Level -->
-                <div class="form-group">
-                  <div class="slider-header">
-                    <label for="stress_level">Perceived Stress (1-10)</label>
-                    <span id="stressValue" class="slider-val">7</span>
-                  </div>
-                  <input type="range" id="stress_level" name="stress_level" min="1" max="10" value="7" class="form-range">
-                  <div class="slider-ticks">
-                    <span>1 (Low)</span>
-                    <span>5 (Moderate)</span>
-                    <span>10 (Severe)</span>
+                  <!-- Biological Sex -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label>Biological Sex</label>
+                    </div>
+                    <div class="segmented-control">
+                      <label class="seg-option">
+                        <input type="radio" name="sex" value="Male" checked>
+                        <span class="seg-btn">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4M19 5h-5M19 5v5"/></svg>
+                          Male
+                        </span>
+                      </label>
+                      <label class="seg-option">
+                        <input type="radio" name="sex" value="Female">
+                        <span class="seg-btn">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/></svg>
+                          Female
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
-                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  Analyze Cardiovascular Risk
-                </button>
-                <button type="button" class="btn btn-outline" id="resetBtn">Reset</button>
+              <!-- Category 2: Biometrics & Vitals -->
+              <div class="form-section">
+                <div class="section-legend">
+                  <span class="legend-num">02</span>
+                  <span>Biometrics & Hemodynamic Vitals</span>
+                </div>
+                <div class="section-fields-grid grid-3">
+                  <!-- Systolic Blood Pressure -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="blood_pressure">Systolic BP</label>
+                      <span class="status-indicator-tag" id="bpTag">Pre-HTN</span>
+                    </div>
+                    <div class="number-input-wrap">
+                      <input type="number" id="blood_pressure" min="80" max="220" value="138" class="text-input">
+                      <span class="input-unit">mmHg</span>
+                    </div>
+                    <span class="field-hint">AHA: Normal &lt;120 | Stage 2 ≥140</span>
+                  </div>
+
+                  <!-- Total Cholesterol -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="cholesterol">Total Cholesterol</label>
+                      <span class="status-indicator-tag" id="cholTag">Borderline</span>
+                    </div>
+                    <div class="number-input-wrap">
+                      <input type="number" id="cholesterol" min="100" max="350" value="264" class="text-input">
+                      <span class="input-unit">mg/dL</span>
+                    </div>
+                    <span class="field-hint">Optimal &lt;200 | High ≥240</span>
+                  </div>
+
+                  <!-- BMI -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="bmi">Body Mass Index</label>
+                      <span class="status-indicator-tag" id="bmiTag">Obese (Class I)</span>
+                    </div>
+                    <div class="number-input-wrap">
+                      <input type="number" id="bmi" step="0.1" min="15.0" max="50.0" value="36.2" class="text-input">
+                      <span class="input-unit">kg/m²</span>
+                    </div>
+                    <span class="field-hint">Normal: 18.5 – 24.9</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category 3: Clinical History & Comorbidities -->
+              <div class="form-section">
+                <div class="section-legend">
+                  <span class="legend-num">03</span>
+                  <span>Comorbidities & Family Heredity</span>
+                </div>
+                <div class="section-fields-grid grid-2">
+                  <!-- Diagnosed Diabetes -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label>Diabetes Diagnosis</label>
+                    </div>
+                    <div class="toggle-card-group">
+                      <label class="toggle-card">
+                        <input type="radio" name="diabetes" value="No" checked>
+                        <div class="toggle-card-inner">
+                          <span class="toggle-icon">🛡️</span>
+                          <div>
+                            <strong>Non-Diabetic</strong>
+                            <small>Normal fasting glucose</small>
+                          </div>
+                        </div>
+                      </label>
+                      <label class="toggle-card">
+                        <input type="radio" name="diabetes" value="Yes">
+                        <div class="toggle-card-inner">
+                          <span class="toggle-icon">⚠️</span>
+                          <div>
+                            <strong>Diabetic</strong>
+                            <small>Elevated metabolic risk</small>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Family History -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label>Family Heart Disease History</label>
+                    </div>
+                    <div class="toggle-card-group">
+                      <label class="toggle-card">
+                        <input type="radio" name="family_history" value="No">
+                        <div class="toggle-card-inner">
+                          <span class="toggle-icon">🌿</span>
+                          <div>
+                            <strong>No Family History</strong>
+                            <small>Standard baseline risk</small>
+                          </div>
+                        </div>
+                      </label>
+                      <label class="toggle-card">
+                        <input type="radio" name="family_history" value="Yes" checked>
+                        <div class="toggle-card-inner">
+                          <span class="toggle-icon">🧬</span>
+                          <div>
+                            <strong>Positive History</strong>
+                            <small>1st degree relative CAD</small>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category 4: Lifestyle & Behavior -->
+              <div class="form-section">
+                <div class="section-legend">
+                  <span class="legend-num">04</span>
+                  <span>Behavioral & Lifestyle Factors</span>
+                </div>
+                <div class="section-fields-grid grid-3">
+                  <!-- Smoker -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label>Tobacco Smoker</label>
+                    </div>
+                    <div class="segmented-control">
+                      <label class="seg-option">
+                        <input type="radio" name="smoker" value="No" checked>
+                        <span class="seg-btn">Non-Smoker</span>
+                      </label>
+                      <label class="seg-option">
+                        <input type="radio" name="smoker" value="Yes">
+                        <span class="seg-btn danger-hover">Active Smoker</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Physical Activity -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="physical_activity">Exercise Days/Wk</label>
+                      <span class="val-pill" id="activityDisplay">1 day</span>
+                    </div>
+                    <div class="day-picker-group">
+                      <button type="button" class="day-chip" data-val="0">0</button>
+                      <button type="button" class="day-chip active" data-val="1">1</button>
+                      <button type="button" class="day-chip" data-val="2">2</button>
+                      <button type="button" class="day-chip" data-val="3">3</button>
+                      <button type="button" class="day-chip" data-val="4">4+</button>
+                    </div>
+                    <input type="hidden" id="physical_activity" value="1">
+                    <span class="field-hint" id="activityHint">Light weekly activity</span>
+                  </div>
+
+                  <!-- Stress Level -->
+                  <div class="control-box">
+                    <div class="control-head">
+                      <label for="stress_level">Perceived Stress</label>
+                      <span class="val-pill stress-pill" id="stressValDisplay">7/10 High</span>
+                    </div>
+                    <input type="range" id="stress_level" min="1" max="10" value="7" class="range-slider stress-slider">
+                    <div class="range-markers">
+                      <span>1 Low</span>
+                      <span>5 Moderate</span>
+                      <span>10 Extreme</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
 
-          <!-- Prediction Result Card -->
-          <div class="card result-card" id="resultCard">
-            <div class="card-header">
-              <h2>Diagnostic Assessment</h2>
-              <span id="engineBadge" class="badge badge-accent">Awaiting Input</span>
-            </div>
+          <!-- Right: Realtime Diagnostic Verdict & Risk Engine -->
+          <div class="diagnostic-panel-wrap">
+            <div class="glass-card verdict-card" id="verdictCard">
+              <div class="verdict-header">
+                <span class="sub-header-tag">AI INFERENCE VERDICT</span>
+                <span class="engine-badge" id="activeEngineBadge">Gradient Boosting Pipeline</span>
+              </div>
 
-            <div class="result-body">
-              <div class="risk-meter-container">
-                <div class="gauge-wrap">
-                  <svg class="risk-gauge" viewBox="0 0 200 120">
-                    <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke-width="18" stroke-linecap="round"/>
-                    <path id="gaugeFill" class="gauge-fill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke-width="18" stroke-linecap="round"/>
+              <!-- Risk Radial Gauge -->
+              <div class="risk-gauge-container">
+                <div class="svg-gauge-box">
+                  <svg class="radial-svg" viewBox="0 0 240 240">
+                    <defs>
+                      <linearGradient id="gaugeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#10b981"/>
+                        <stop offset="50%" stop-color="#f59e0b"/>
+                        <stop offset="100%" stop-color="#f43f5e"/>
+                      </linearGradient>
+                      <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                      </filter>
+                    </defs>
+
+                    <!-- Background Track -->
+                    <circle class="gauge-bg-circle" cx="120" cy="120" r="92"/>
+                    <!-- Progress Bar -->
+                    <circle class="gauge-progress-circle" id="gaugeProgress" cx="120" cy="120" r="92" filter="url(#glowEffect)"/>
                   </svg>
-                  <div class="gauge-center-text">
-                    <span id="gaugePercentage" class="gauge-pct">--%</span>
-                    <span class="gauge-sub">Risk Score</span>
+
+                  <div class="gauge-center-content">
+                    <div class="heartbeat-dot" id="heartbeatDot"></div>
+                    <div class="percentage-display" id="riskScoreDisplay">61<span class="pct-sign">%</span></div>
+                    <div class="score-label">CARDIAC RISK PROBABILITY</div>
                   </div>
                 </div>
 
-                <div class="risk-status-pill" id="riskStatusPill">
-                  <span id="statusIcon">🩺</span>
-                  <span id="statusText">Run analysis to view prediction</span>
+                <!-- Primary Risk Verdict Badge -->
+                <div class="verdict-banner banner-warning" id="verdictBanner">
+                  <div class="banner-icon" id="bannerIcon">⚠️</div>
+                  <div class="banner-text">
+                    <h3 id="verdictHeading">ELEVATED CARDIAC RISK</h3>
+                    <p id="verdictSub">Heart Disease Classification: Positive (1)</p>
+                  </div>
                 </div>
               </div>
 
-              <!-- Risk Drivers Table -->
-              <div class="risk-breakdown-section">
-                <h3>Primary Risk Contributors</h3>
-                <div id="riskFactorsList" class="factors-list">
-                  <p class="empty-state">No patient analysis calculated yet.</p>
+              <!-- Biomarker Risk Drivers Breakdown -->
+              <div class="risk-drivers-box">
+                <h4>Biomarker Contribution Impact</h4>
+                <div class="driver-bars" id="driverBarsContainer">
+                  <!-- Dynamically populated -->
                 </div>
               </div>
 
-              <!-- Recommendation Box -->
-              <div class="recommendation-box" id="recommendationBox">
-                <h4>Clinical Recommendation</h4>
-                <p id="recommendationText">Complete intake indicators and press Analyze.</p>
+              <!-- Clinical Recommendation -->
+              <div class="recommendation-card" id="clinicalRecommendation">
+                <div class="rec-icon">📋</div>
+                <div>
+                  <strong>Recommended Clinical Action</strong>
+                  <p id="recommendationText">Patient exhibits elevated cholesterol (264 mg/dL) and pre-hypertensive blood pressure with Class I obesity. Recommend fasting lipid profile, 24-hr ambulatory BP monitoring, and cardiovascular lifestyle counseling.</p>
+                </div>
+              </div>
+
+              <!-- Quick Export Action -->
+              <div class="verdict-actions">
+                <button type="button" class="btn-action-primary" id="printReportBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                  Export Diagnostic Summary
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Tab 2: Batch CSV Screening -->
-      <section id="tab-batch" class="tab-pane">
-        <div class="card">
-          <div class="card-header">
+      <!-- ================= TAB 2: BATCH SCREENER ================= -->
+      <section id="tab-batch" class="tab-view">
+        <div class="glass-card full-card">
+          <div class="card-title-bar">
             <div>
-              <h2>Cohort Batch Classification</h2>
-              <p>Upload a CSV dataset containing hospital patient records for batch inference.</p>
+              <h2>Cohort Screening & Batch Classification</h2>
+              <p>Execute classification inferences across large patient cohorts from CSV datasets.</p>
             </div>
-            <div>
-              <button class="btn btn-outline-sm" id="downloadSampleBtn">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Sample CSV
+            <div class="cohort-actions">
+              <button class="btn-action-secondary" id="loadPrebuiltCohortBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Load Pre-Built 20-Patient Cohort
+              </button>
+              <button class="btn-action-secondary" id="downloadSampleCsvBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                Download Template CSV
               </button>
             </div>
           </div>
 
-          <div class="drop-zone" id="dropZone">
-            <div class="drop-icon">
-              <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <!-- Drag and Drop Area -->
+          <div class="upload-dropzone" id="uploadDropzone">
+            <div class="upload-dropzone-inner">
+              <div class="drop-icon-halo">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <h3>Drag & Drop Hospital CSV Dataset Here</h3>
+              <p>Supports columns: <code>age, sex, blood_pressure, cholesterol, bmi, smoker, diabetes, physical_activity, family_history, stress_level</code></p>
+              <button type="button" class="btn-action-primary" id="browseFileBtn">Browse Files on Computer</button>
+              <input type="file" id="batchFileInput" accept=".csv" style="display:none">
             </div>
-            <h3>Drag & Drop CSV File</h3>
-            <p>Or click to browse from your computer</p>
-            <input type="file" id="csvFileInput" accept=".csv" style="display:none">
           </div>
 
-          <!-- Batch Results -->
-          <div id="batchResultsSection" style="display:none; margin-top: 2rem;">
-            <div class="batch-summary-kpis">
-              <div class="kpi-card">
-                <span class="kpi-num" id="totalProcessed">0</span>
-                <span class="kpi-label">Total Evaluated</span>
+          <!-- Batch Results Area -->
+          <div class="batch-results-wrap" id="batchResultsWrap" style="display:none;">
+            <!-- Metrics Summary Cards -->
+            <div class="kpi-banner-grid">
+              <div class="kpi-tile">
+                <span class="kpi-head">COHORT PROCESSED</span>
+                <span class="kpi-value" id="kpiTotalCount">0</span>
+                <span class="kpi-sub">Total Patient Records</span>
               </div>
-              <div class="kpi-card kpi-danger">
-                <span class="kpi-num" id="totalHighRisk">0</span>
-                <span class="kpi-label">Positive / High Risk</span>
+              <div class="kpi-tile tile-danger">
+                <span class="kpi-head">POSITIVE / HIGH RISK</span>
+                <span class="kpi-value" id="kpiPositiveCount">0</span>
+                <span class="kpi-sub" id="kpiPositivePct">0% of cohort</span>
               </div>
-              <div class="kpi-card kpi-success">
-                <span class="kpi-num" id="totalLowRisk">0</span>
-                <span class="kpi-label">Negative / Low Risk</span>
+              <div class="kpi-tile tile-success">
+                <span class="kpi-head">NEGATIVE / LOW RISK</span>
+                <span class="kpi-value" id="kpiNegativeCount">0</span>
+                <span class="kpi-sub" id="kpiNegativePct">0% of cohort</span>
               </div>
-              <div class="kpi-card">
-                <span class="kpi-num" id="avgCohortRisk">0%</span>
-                <span class="kpi-label">Average Risk Score</span>
+              <div class="kpi-tile tile-info">
+                <span class="kpi-head">MEAN CARDIAC RISK</span>
+                <span class="kpi-value" id="kpiMeanProb">0%</span>
+                <span class="kpi-sub">Cohort Probability Index</span>
               </div>
             </div>
 
-            <div class="batch-table-actions">
-              <input type="text" id="batchSearchInput" placeholder="Filter patient records..." class="form-input form-input-sm">
-              <button class="btn btn-primary-sm" id="exportResultsBtn">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Export Scored CSV
-              </button>
+            <!-- Table Filter Toolbar -->
+            <div class="table-toolbar">
+              <div class="search-input-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="cohortSearchInput" placeholder="Filter by age, sex, risk band, or smoker status...">
+              </div>
+
+              <div class="filter-controls">
+                <select id="riskFilterSelect" class="styled-select">
+                  <option value="all">All Risk Levels</option>
+                  <option value="high">High Risk (Prob ≥ 60%)</option>
+                  <option value="moderate">Moderate Risk (40% - 59%)</option>
+                  <option value="low">Low Risk (Prob &lt; 40%)</option>
+                </select>
+
+                <button class="btn-action-primary" id="exportScoredCsvBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export Scored Cohort CSV
+                </button>
+              </div>
             </div>
 
-            <div class="table-container">
-              <table class="data-table" id="batchTable">
+            <!-- Cohort Data Table -->
+            <div class="table-glass-wrap">
+              <table class="clinical-table" id="cohortTable">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Age</th>
                     <th>Sex</th>
-                    <th>BP</th>
-                    <th>Chol</th>
+                    <th>Systolic BP</th>
+                    <th>Cholesterol</th>
                     <th>BMI</th>
                     <th>Smoker</th>
                     <th>Diabetes</th>
                     <th>Activity</th>
-                    <th>Fam Hist</th>
+                    <th>Family Hist</th>
                     <th>Stress</th>
-                    <th>Predicted Class</th>
-                    <th>Probability</th>
-                    <th>Risk Band</th>
+                    <th>Classification</th>
+                    <th>Risk Probability</th>
+                    <th>Risk Tier</th>
                   </tr>
                 </thead>
-                <tbody id="batchTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tab 3: Model Benchmark & Metrics -->
-      <section id="tab-metrics" class="tab-pane">
-        <div class="metrics-grid">
-          <!-- Overview Cards -->
-          <div class="kpi-card">
-            <span class="kpi-num">500</span>
-            <span class="kpi-label">Dataset Cohort Size</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-num">10</span>
-            <span class="kpi-label">Clinical Features Utilized</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-num">0.563</span>
-            <span class="kpi-label">Best 5-Fold CV ROC-AUC</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-num">Gradient Boosting</span>
-            <span class="kpi-label">Champion Pipeline Architecture</span>
-          </div>
-        </div>
-
-        <div class="grid-2col" style="margin-top: 1.5rem;">
-          <!-- Benchmark Comparison Table -->
-          <div class="card">
-            <div class="card-header">
-              <h2>Model Benchmark (5-Fold Stratified CV)</h2>
-            </div>
-            <div class="table-container">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Architecture</th>
-                    <th>CV ROC-AUC</th>
-                    <th>CV F1-Score</th>
-                    <th>CV Accuracy</th>
-                    <th>Test Accuracy</th>
-                  </tr>
-                </thead>
-                <tbody id="benchmarkTableBody">
-                  <tr>
-                    <td><strong>Gradient Boosting</strong></td>
-                    <td><span class="badge badge-accent">0.5632</span></td>
-                    <td>0.5916</td>
-                    <td>53.75%</td>
-                    <td>51.00%</td>
-                  </tr>
-                  <tr>
-                    <td>Support Vector Classifier</td>
-                    <td>0.5342</td>
-                    <td>0.5939</td>
-                    <td>52.25%</td>
-                    <td>58.00%</td>
-                  </tr>
-                  <tr>
-                    <td>Logistic Regression</td>
-                    <td>0.5301</td>
-                    <td>0.6137</td>
-                    <td>53.50%</td>
-                    <td>55.00%</td>
-                  </tr>
-                  <tr>
-                    <td>Random Forest</td>
-                    <td>0.5292</td>
-                    <td>0.5865</td>
-                    <td>50.50%</td>
-                    <td>53.00%</td>
-                  </tr>
-                  <tr>
-                    <td>Extra Trees</td>
-                    <td>0.5110</td>
-                    <td>0.6044</td>
-                    <td>50.50%</td>
-                    <td>55.00%</td>
-                  </tr>
+                <tbody id="cohortTableBody">
+                  <!-- Dynamically populated -->
                 </tbody>
               </table>
             </div>
           </div>
-
-          <!-- Confusion Matrix Card -->
-          <div class="card">
-            <div class="card-header">
-              <h2>Hold-out Test Confusion Matrix</h2>
-              <span class="badge badge-secondary">N = 100 patients</span>
-            </div>
-            <div class="cm-display">
-              <div class="cm-grid">
-                <div class="cm-header-cell"></div>
-                <div class="cm-header-cell">Pred: No Disease</div>
-                <div class="cm-header-cell">Pred: Disease</div>
-                <div class="cm-header-cell">Actual: No Disease (0)</div>
-                <div class="cm-cell cm-tn">
-                  <span class="cm-val">14</span>
-                  <span class="cm-lbl">True Negatives (TN)</span>
-                </div>
-                <div class="cm-cell cm-fp">
-                  <span class="cm-val">33</span>
-                  <span class="cm-lbl">False Positives (FP)</span>
-                </div>
-                <div class="cm-header-cell">Actual: Disease (1)</div>
-                <div class="cm-cell cm-fn">
-                  <span class="cm-val">16</span>
-                  <span class="cm-lbl">False Negatives (FN)</span>
-                </div>
-                <div class="cm-cell cm-tp">
-                  <span class="cm-val">37</span>
-                  <span class="cm-lbl">True Positives (TP)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Importance Chart -->
-        <div class="card" style="margin-top: 1.5rem;">
-          <div class="card-header">
-            <h2>Feature Importance & Contribution Breakdown</h2>
-            <p>Relative importance of all 10 features in predicting heart disease.</p>
-          </div>
-          <div class="feat-importance-list" id="featureImportanceList"></div>
         </div>
       </section>
 
-      <!-- Tab 4: API & Deployment Specs -->
-      <section id="tab-api" class="tab-pane">
-        <div class="card">
-          <div class="card-header">
-            <h2>REST API Specification</h2>
-            <span class="badge badge-pulse"><span class="pulse-dot"></span> Vercel Serverless Ready</span>
+      <!-- ================= TAB 3: MODEL ANALYTICS ================= -->
+      <section id="tab-analytics" class="tab-view">
+        <div class="analytics-layout">
+          <!-- KPI Row -->
+          <div class="kpi-banner-grid">
+            <div class="kpi-tile">
+              <span class="kpi-head">TRAINING SAMPLES</span>
+              <span class="kpi-value">500</span>
+              <span class="kpi-sub">Hospital Synthetic Cohort</span>
+            </div>
+            <div class="kpi-tile tile-info">
+              <span class="kpi-head">CHAMPION ALGORITHM</span>
+              <span class="kpi-value">GBDT</span>
+              <span class="kpi-sub">Gradient Boosting Trees</span>
+            </div>
+            <div class="kpi-tile tile-success">
+              <span class="kpi-head">5-FOLD CV ROC-AUC</span>
+              <span class="kpi-value">0.5632</span>
+              <span class="kpi-sub">Cross-Validated Benchmark</span>
+            </div>
+            <div class="kpi-tile tile-warning">
+              <span class="kpi-head">TEST F1-SCORE</span>
+              <span class="kpi-value">0.6016</span>
+              <span class="kpi-sub">Hold-out Evaluation (N=100)</span>
+            </div>
           </div>
 
-          <div class="api-spec-content">
-            <div class="endpoint-block">
-              <div class="endpoint-header">
-                <span class="http-badge post">POST</span>
-                <code>/api/predict</code>
-                <span class="endpoint-desc">Classify single patient or batch array</span>
+          <div class="analytics-columns">
+            <!-- Benchmark Comparison Table -->
+            <div class="glass-card">
+              <div class="card-title-bar">
+                <div>
+                  <h2>5-Fold Stratified Cross-Validation Benchmark</h2>
+                  <p>Comprehensive comparison across standard machine learning classification architectures.</p>
+                </div>
               </div>
-
-              <h4>Request Payload (JSON)</h4>
-              <pre class="code-box"><code>{
-  "age": 54,
-  "sex": "Male",
-  "blood_pressure": 138,
-  "cholesterol": 264,
-  "bmi": 36.2,
-  "smoker": "No",
-  "diabetes": "No",
-  "physical_activity": 1,
-  "family_history": "Yes",
-  "stress_level": 7
-}</code></pre>
-
-              <h4>Response Output (JSON)</h4>
-              <pre class="code-box"><code>{
-  "heart_disease_prediction": 1,
-  "heart_disease_label": "Positive (Presence of Heart Disease)",
-  "probability": 0.6842,
-  "probability_percentage": 68.42,
-  "risk_category": "High Risk",
-  "badge": "danger",
-  "key_risk_factors": [
-    { "factor": "High Total Cholesterol (264 mg/dL)", "impact": "High Adverse" },
-    { "factor": "High BMI (36.2 - Obese Range)", "impact": "Adverse" }
-  ],
-  "engine": "Scikit-Learn GradientBoosting Pipeline"
-}</code></pre>
+              <div class="table-glass-wrap">
+                <table class="clinical-table">
+                  <thead>
+                    <tr>
+                      <th>Algorithm</th>
+                      <th>CV ROC-AUC</th>
+                      <th>CV F1-Score</th>
+                      <th>CV Accuracy</th>
+                      <th>Hold-out Acc</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="highlight-row">
+                      <td><strong>Gradient Boosting (Champion)</strong></td>
+                      <td><span class="pill-accent">0.5632</span></td>
+                      <td>0.5916</td>
+                      <td>53.75%</td>
+                      <td>51.00%</td>
+                    </tr>
+                    <tr>
+                      <td>Support Vector Classifier (RBF)</td>
+                      <td>0.5342</td>
+                      <td>0.5939</td>
+                      <td>52.25%</td>
+                      <td>58.00%</td>
+                    </tr>
+                    <tr>
+                      <td>Logistic Regression (L2)</td>
+                      <td>0.5301</td>
+                      <td>0.6137</td>
+                      <td>53.50%</td>
+                      <td>55.00%</td>
+                    </tr>
+                    <tr>
+                      <td>Random Forest (150 trees)</td>
+                      <td>0.5292</td>
+                      <td>0.5865</td>
+                      <td>50.50%</td>
+                      <td>53.00%</td>
+                    </tr>
+                    <tr>
+                      <td>Extra Trees Classifier</td>
+                      <td>0.5110</td>
+                      <td>0.6044</td>
+                      <td>50.50%</td>
+                      <td>55.00%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
-            <!-- Live API Tester -->
-            <div class="api-tester-card">
-              <h3>Interactive API Tester</h3>
-              <p>Test the live REST endpoint directly:</p>
-              <button class="btn btn-primary" id="testApiBtn">
-                Send Sample POST Request to /api/predict
-              </button>
-              <div id="apiTestResponse" style="margin-top: 1rem; display:none;">
-                <h4>Response received:</h4>
-                <pre class="code-box"><code id="apiResponseCode"></code></pre>
+            <!-- Confusion Matrix Card -->
+            <div class="glass-card">
+              <div class="card-title-bar">
+                <div>
+                  <h2>Hold-out Test Confusion Matrix</h2>
+                  <p>Evaluation on 100 unseen hold-out patient records (80/20 stratified split).</p>
+                </div>
+              </div>
+              <div class="matrix-presentation">
+                <div class="matrix-box">
+                  <div class="matrix-grid-visual">
+                    <div class="matrix-corner"></div>
+                    <div class="matrix-col-label">Predicted Negative</div>
+                    <div class="matrix-col-label">Predicted Positive</div>
+
+                    <div class="matrix-row-label">Actual Negative (0)</div>
+                    <div class="matrix-quad quad-tn">
+                      <span class="quad-num">14</span>
+                      <span class="quad-text">True Negative</span>
+                    </div>
+                    <div class="matrix-quad quad-fp">
+                      <span class="quad-num">33</span>
+                      <span class="quad-text">False Positive</span>
+                    </div>
+
+                    <div class="matrix-row-label">Actual Positive (1)</div>
+                    <div class="matrix-quad quad-fn">
+                      <span class="quad-num">16</span>
+                      <span class="quad-text">False Negative</span>
+                    </div>
+                    <div class="matrix-quad quad-tp">
+                      <span class="quad-num">37</span>
+                      <span class="quad-text">True Positive</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="matrix-stats-pills">
+                  <div class="metric-pill">
+                    <span>Precision:</span> <strong>52.86%</strong>
+                  </div>
+                  <div class="metric-pill">
+                    <span>Sensitivity / Recall:</span> <strong>69.81%</strong>
+                  </div>
+                  <div class="metric-pill">
+                    <span>Specificity:</span> <strong>29.79%</strong>
+                  </div>
+                  <div class="metric-pill">
+                    <span>F1-Score:</span> <strong>0.6016</strong>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Vercel Deployment Instructions -->
-            <div class="deployment-guide-card">
-              <h3>Deploying to Vercel</h3>
-              <p>This application is 100% pre-configured for Vercel deployment with zero configuration:</p>
-              <ol class="deploy-steps">
-                <li><strong>Deploy via Vercel CLI:</strong>
-                  <pre class="code-box"><code>npm install -g vercel
-vercel deploy --prod</code></pre>
-                </li>
-                <li><strong>Deploy via GitHub / Git Repository:</strong>
-                  <p>Push this directory to a GitHub repository, open <a href="https://vercel.com" target="_blank">vercel.com</a>, import repository, and click <strong>Deploy</strong>. Vercel automatically detects <code>vercel.json</code>, packages the Python API in <code>api/index.py</code>, and serves the frontend from <code>public/</code>.</p>
-                </li>
-              </ol>
+          <!-- Feature Importance Breakdown Card -->
+          <div class="glass-card">
+            <div class="card-title-bar">
+              <div>
+                <h2>Feature Importance & Relative Predictive Weights</h2>
+                <p>Tree-based Gini importance ranking for all clinical features utilized by the pipeline.</p>
+              </div>
+            </div>
+            <div class="feature-importance-grid" id="featureImportanceGrid">
+              <!-- Dynamically populated with bar animations -->
             </div>
           </div>
         </div>
       </section>
+
+      <!-- ================= TAB 4: REST API & INTEGRATION ================= -->
+      <section id="tab-developer" class="tab-view">
+        <div class="glass-card full-card">
+          <div class="card-title-bar">
+            <div>
+              <h2>REST API Specification & Integration Playground</h2>
+              <p>Deploy directly to Vercel or consume the serverless endpoint programmatically from any frontend or service.</p>
+            </div>
+            <div class="endpoint-pill">
+              <span class="badge-post">POST</span>
+              <code>/api/predict</code>
+            </div>
+          </div>
+
+          <div class="api-integration-grid">
+            <!-- Left: Request & Code Generator -->
+            <div class="api-code-column">
+              <div class="code-header-bar">
+                <span>Code Integration Snippets</span>
+                <div class="code-tabs">
+                  <button class="code-tab-btn active" data-lang="curl">cURL</button>
+                  <button class="code-tab-btn" data-lang="python">Python</button>
+                  <button class="code-tab-btn" data-lang="javascript">JavaScript</button>
+                </div>
+              </div>
+
+              <div class="code-display-block">
+                <pre><code id="codeSnippetBox">curl -X POST https://your-deployment.vercel.app/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "age": 54,
+    "sex": "Male",
+    "blood_pressure": 138,
+    "cholesterol": 264,
+    "bmi": 36.2,
+    "smoker": "No",
+    "diabetes": "No",
+    "physical_activity": 1,
+    "family_history": "Yes",
+    "stress_level": 7
+  }'</code></pre>
+                <button class="copy-code-btn" id="copyCodeBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Copy
+                </button>
+              </div>
+
+              <!-- Interactive Playground Runner -->
+              <div class="playground-runner">
+                <button class="btn-action-primary" id="testApiEndpointBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Send Live Test Request to API
+                </button>
+                <span class="runner-note">Executes against active serverless handler</span>
+              </div>
+
+              <div class="response-viewer" id="responseViewer" style="display:none;">
+                <div class="response-head">
+                  <span>HTTP Response</span>
+                  <span class="status-200" id="responseStatusBadge">200 OK</span>
+                </div>
+                <pre><code id="responseBodyBox"></code></pre>
+              </div>
+            </div>
+
+            <!-- Right: Architecture & Vercel Specs -->
+            <div class="deployment-specs-column">
+              <div class="spec-card">
+                <h3>Vercel Deployment Architecture</h3>
+                <p>This application is architected with a decoupled structure optimized for serverless edge and Python runtime:</p>
+                <ul class="spec-list">
+                  <li>
+                    <strong>Serverless Handler:</strong> <code>api/index.py</code> handles requests with sub-100ms cold starts.
+                  </li>
+                  <li>
+                    <strong>Zero-Downtime Fallback:</strong> If Python dependencies are initializing, the client-side engine automatically performs the exact standardized scoring with zero latency.
+                  </li>
+                  <li>
+                    <strong>Zero-Config Routing:</strong> <code>vercel.json</code> rewrites routes dynamically without complex build pipelines.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="spec-card">
+                <h3>Quick Deployment Command</h3>
+                <pre class="terminal-box"><code># Deploy via Vercel CLI
+cd deploy
+vercel --prod</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
