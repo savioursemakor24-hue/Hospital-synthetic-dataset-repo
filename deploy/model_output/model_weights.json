@@ -1,0 +1,79 @@
+{
+  "numerical_features": [
+    "age",
+    "blood_pressure",
+    "cholesterol",
+    "bmi",
+    "physical_activity",
+    "stress_level"
+  ],
+  "scaler": {
+    "mean": [
+      54.864,
+      132.874,
+      221.5,
+      29.020400000000002,
+      2.048,
+      4.876
+    ],
+    "scale": [
+      14.300681941781658,
+      26.392084495166348,
+      43.819744408200286,
+      6.394549541601816,
+      1.4204562647262322,
+      2.5924166331822516
+    ]
+  },
+  "categorical_features": [
+    "sex",
+    "smoker",
+    "diabetes",
+    "family_history"
+  ],
+  "categories": {
+    "sex": [
+      "Female",
+      "Male"
+    ],
+    "smoker": [
+      "No",
+      "Yes"
+    ],
+    "diabetes": [
+      "No",
+      "Yes"
+    ],
+    "family_history": [
+      "No",
+      "Yes"
+    ]
+  },
+  "feature_order": [
+    "age",
+    "blood_pressure",
+    "cholesterol",
+    "bmi",
+    "physical_activity",
+    "stress_level",
+    "sex_Male",
+    "smoker_Yes",
+    "diabetes_Yes",
+    "family_history_Yes"
+  ],
+  "logistic_regression": {
+    "intercept": -0.11327764993766996,
+    "coefficients": [
+      -0.12297417680251706,
+      -0.20086215537816665,
+      -0.06434098354783964,
+      0.02911852418720872,
+      0.04084948932846384,
+      0.0004313317207499067,
+      0.15456143558994018,
+      0.2925245451182614,
+      0.07744011037289589,
+      -0.04053913159328684
+    ]
+  }
+}
